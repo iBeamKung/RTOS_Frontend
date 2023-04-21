@@ -1,0 +1,115 @@
+
+/* ใส่กรอบ */
+
+
+.custom-border {
+    border: 2px solid #1e0707;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: white;
+    width: 100%;
+    max-width: 500px; /* ปรับค่าตามความต้องการ */
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  
+  /* ตัวอักษรสีน้ำเงิน */
+  .text-blue {
+    color: #03040b;
+  }
+  
+  /* ปุ่มสลับล็อค */
+  .switch-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #666;
+  }
+  
+  .switch-locked {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f00;
+  }
+  
+  .switch-unlocked {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgb(37, 175, 30);
+  }
+  .h1{
+    font-size: 100%;
+    font-weight: bold;
+  }
+  
+  .PinkSwitch {
+    margin-left: 15px;
+  }
+  
+  .switchColor {
+    color: #ff69b4;
+  }
+  
+  .switchColor .MuiSwitch-track {
+    background-color: #ff69b4;
+  }
+  
+  .switchColor .MuiSwitch-colorPrimary.Mui-checked {
+    color: #ff69b4;
+  }
+  
+  .switchColor .MuiSwitch-colorPrimary.Mui-checked + .MuiSwitch-track {
+    background-color: #ff69b4;
+  }
+
+  .button-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .button-group {
+    /* display: flex; */
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .button-group button:first-child {
+    margin-right: 10px;
+  }
+  
+  .button-group button:last-child {
+    margin-left: 10px;
+  }
+  .button {
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    width: 20%;
+  }
+  
+  .pink {
+    background-color: #fe0b0b;
+    color: white;
+  }
+  
+  .green {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .blue {
+    background-color: #2196f3;
+    color: white;
+  }
+  
+  .orange {
+    background-color: #ff9800;
+    color: white;
+  }
+  
+  .button:hover {
+    cursor: pointer;
+  }
+  

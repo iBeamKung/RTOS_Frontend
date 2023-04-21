@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import mqtt from "mqtt/dist/mqtt";
+import { Container, Row, Col, Form } from 'react-bootstrap';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import './Custom.css';
+import './App.css';
+import { pink } from '@mui/material/colors';
+import { alpha, styled } from '@mui/material/styles';
+import Swal from 'sweetalert2';
+// import mqtt from 'mqtt';
 
 function MyComponent() {
     //const [people, setPeople] = useState('Loading...');
@@ -110,30 +119,41 @@ function MyComponent() {
     }
 
     return(
-        <div>
-            Smart Home Security
-            <p>Door Lock Status: {doorlock}</p>
-            <p>Door Sensor Status: {doorsensor}</p>
-            <p>Security Status: {security}</p>
-
-            <p>Lock:</p>
-            <button onClick={Lock}>
-                Lock!
-            </button>
-            <button onClick={Unlock}>
-                Unlock!
-            </button>
-
-            <p>Security:</p>
-            <button onClick={OnSec}>
-                On!
-            </button>
-            <button onClick={OffSec}>
-                Off!
-            </button>
-
-            <p>Received message: {message}</p>
-        </div>
+    <Container className="App">
+      <Row className="align-items-center ">
+        <Col className="custom-border">
+            <h1 className="text-blue"> Smart Home Security </h1>
+            <p>Door Lock Status: <strong>{doorlock}</strong></p>
+            <p>Door Sensor Status: <strong>{doorsensor}</strong></p>
+            <p>Security Status: <strong>{security}</strong></p>
+        </Col>
+        <Col className="custom-border">
+            <div>
+                <p className="button-label">Lock:</p>
+                <div className="button-group">
+                <button className="button pink" onClick={Lock}>
+                    Lock
+                </button>
+                <button className="button green" onClick={Unlock}>
+                    Unlock
+                </button>
+                </div>
+            </div>
+            <div>
+                <p className="button-label">Security:</p>
+                <div className="button-group">
+                <button className="button blue" onClick={OnSec}>
+                    On
+                </button>
+                <button className="button orange" onClick={OffSec}>
+                    Off
+                </button>
+                </div>
+            </div>
+            </Col>
+            {/* <p>Received message: {message}</p> */}
+            </Row>
+        </Container>
     );
 }
 
