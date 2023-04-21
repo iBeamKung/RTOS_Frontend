@@ -122,6 +122,9 @@ function MyComponent() {
     <Container className="App">
       <Row className="align-items-center ">
         <Col className="custom-border">
+            <span>
+                <p className="underline-text">version 2.0</p>
+            </span>
             <h1 className="text-blue"> Smart Home Security </h1>
             <p>Door Lock Status: <strong>{doorlock}</strong></p>
             <p>Door Sensor Status: <strong>{doorsensor}</strong></p>
@@ -152,8 +155,11 @@ function MyComponent() {
             </div>
             </Col>
             {/* <p>Received message: {message}</p> */}
+            
             </Row>
+            
         </Container>
+        
     );
 }
 
