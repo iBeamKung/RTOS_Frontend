@@ -15,7 +15,7 @@ function MyComponent() {
     const [message, setMessage] = useState('');
     const [isConnected, setIsConnected] = useState(true);
     const [isDisconnected, setIsDisconnected] = useState(false);
-    const url = 'mqtt://45.150.128.22:9001';
+    const url = 'mqtt://'; //MQTT Broker URL
     const options = {
         // Clean session
         clean: true,
