@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import mqtt from "mqtt/dist/mqtt";
+import mqtt, { PassThrough } from "mqtt/dist/mqtt";
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -17,7 +17,8 @@ function MyComponent() {
     const [security, setSecurity] = useState('Loading...');
     const [alert, setAlert] = useState('Loading...');
     const [message, setMessage] = useState('');
-
+    const [isConnected, setIsConnected] = useState(true);
+    const [isDisconnected, setIsDisconnected] = useState(false);
     const url = 'mqtt://45.150.128.22:9001';
     const options = {
         // Clean session
@@ -25,21 +26,61 @@ function MyComponent() {
         // Authentication
         clientId: "clientmqtt_" + Math.random().toString(16).substr(2, 8)
     }
+    // const client  = null;
+    // let client;
 
+    // try {
+    //   client = mqtt.connect(url, options);
+    // } catch (error) {
+    //   console.log('Error connecting to MQTT Broker:', error);
+    //   throw new Error('Failed to connect to MQTT Broker');
+    // }
     const client = mqtt.connect(url, options);
+    // if (client.connected){
+    //     console.log("pass")}
+    // else{console.log("Erroe")}
     useEffect(() => {
-
         client.subscribe('RTOS/esp/status');
         client.subscribe('RTOS/esp/status_door');
         client.subscribe('RTOS/esp/status_lock_1');
         client.subscribe('RTOS/esp/security');
         client.subscribe('RTOS/esp/alert');
-
+        console.log(isDisconnected);
+        
+          client.on('error', function (error) {
+            console.log('MQTT client error:', error);
+            setIsConnected(false);
+            if (!isDisconnected) {
+            setIsDisconnected(true);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+              });
+              
+            }
+          });
+          client.on('close', function () {
+            console.log('MQTT client disconnected');
+            setIsConnected(false);
+            if (!isDisconnected) {
+            setIsDisconnected(true);
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: 'MQTT client disconnected!',
+              });
+            }
+          });
         client.on('message', function (topic, message) {
             //console.log(topic, message.toString());
+            console.log('MQTT client connected');
+            setIsConnected(true);
+            setIsDisconnected(false);
             const jsonMessage = JSON.parse(message.toString());
             console.log(topic, );
-
+            
+       
             if(topic == "RTOS/esp/status")
             {
                 console.log("ESP Alive");
@@ -92,7 +133,7 @@ function MyComponent() {
             }
 
             setMessage(message.toString());
-        });
+        ;});
 
         client.publish('RTOS/esp/check_status', JSON.stringify({ clientId:options.clientId }));
 
@@ -100,8 +141,9 @@ function MyComponent() {
             client.end();
         };
         
-    }, []);
-
+   }, []);
+    
+    
     function Lock() {
         client.publish('RTOS/esp/lock_1', JSON.stringify({ lock_1: true }));
     }
