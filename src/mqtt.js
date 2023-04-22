@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import mqtt, { PassThrough } from "mqtt/dist/mqtt";
-import { Container, Row, Col, Form } from 'react-bootstrap';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import { Container, Row, Col } from 'react-bootstrap';
 import './Custom.css';
 import './App.css';
-import { pink } from '@mui/material/colors';
-import { alpha, styled } from '@mui/material/styles';
 import Swal from 'sweetalert2';
 // import mqtt from 'mqtt';
 
