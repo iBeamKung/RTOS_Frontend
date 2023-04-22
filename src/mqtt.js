@@ -26,19 +26,9 @@ function MyComponent() {
         // Authentication
         clientId: "clientmqtt_" + Math.random().toString(16).substr(2, 8)
     }
-    // const client  = null;
-    // let client;
-
-    // try {
-    //   client = mqtt.connect(url, options);
-    // } catch (error) {
-    //   console.log('Error connecting to MQTT Broker:', error);
-    //   throw new Error('Failed to connect to MQTT Broker');
-    // }
+    
     const client = mqtt.connect(url, options);
-    // if (client.connected){
-    //     console.log("pass")}
-    // else{console.log("Erroe")}
+
     useEffect(() => {
         client.subscribe('RTOS/esp/status');
         client.subscribe('RTOS/esp/status_door');
